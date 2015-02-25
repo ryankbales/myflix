@@ -12,5 +12,6 @@
  *= require bootstrap
  *= require whitespace-reset
  *= require videos
+ *= require rails_bootstrap_forms
  *= require_tree .
 */

@@ -1,7 +1,7 @@
 class VideosController < ApplicationController
-
+	before_filter :require_user
 	def index
-		@videos = Video.all
+		@videos = Video.search_by_title(params[:search])
 		@categories = Category.all
 	end
 
