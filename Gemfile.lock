@@ -55,6 +55,7 @@ GEM
     erubis (2.7.0)
     eventmachine (1.0.0)
     execjs (2.0.2)
+    fabrication (2.12.2)
     faker (1.4.3)
       i18n (~> 0.5)
     haml (4.0.5)
@@ -169,6 +170,7 @@ DEPENDENCIES
   bootstrap_form
   coffee-rails
   database_cleaner (= 1.2.0)
+  fabrication
   faker
   haml-rails
   jquery-rails
