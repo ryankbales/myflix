@@ -9,5 +9,14 @@ class ApplicationController < ActionController::Base
   	User.find(session[:user_id]) if session[:user_id]
   end
 
-  helper_method :current_user
+  def average_rating(obj)
+    rating_total = 0
+    review_count = obj.reviews.count
+    obj.reviews.each do |review|
+      rating_total += review.rating
+    end
+    rating_total/review_count
+  end
+
+  helper_method :current_user, :average_rating
 end
