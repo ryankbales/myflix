@@ -14,12 +14,13 @@ class ReviewsController < ApplicationController
 
   def edit
     @review = Review.find(params[:id])
+    @video = @review.video
   end
 
   def update
     @review = Review.find(params[:id])
     @video = @review.video
-    if @review.save
+    if @review.update(params.require(:review).permit(:rating, :review))
       flash[:notice] = "Your review has been updated."
       redirect_to video_path(@video)
     else
