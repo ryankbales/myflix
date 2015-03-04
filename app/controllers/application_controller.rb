@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
     obj.reviews.each do |review|
       rating_total += review.rating
     end
-    rating_total/review_count
+    rating_total/review_count if rating_total && review_count > 0
   end
 
   helper_method :current_user, :average_rating
