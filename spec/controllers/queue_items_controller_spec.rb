@@ -15,4 +15,19 @@ describe QueueItemsController do
       expect(response).to redirect_to sign_in_path
     end
   end
+
+  describe "POST index" do
+    it "redirects to the my queue page" do
+      session[:user_id] = Fabricate(:user).id
+      video = Fabricate(:video)
+      post :create, video_id: video.id
+      expect(response).to redirect_to my_queue_path
+    end
+    it "creates a queue item"
+    it "creates the queue item that is associated with the video"
+    it "creates the queue item that is associated with the user"
+    it "puts the video as the last video in the queue"
+    it "does not add a duplicate video"
+    it "redirects to the sign in page for unquthenticated users"
+  end
 end

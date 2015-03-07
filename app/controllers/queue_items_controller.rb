@@ -6,6 +6,6 @@ class QueueItemsController < ApplicationController
   end
 
   def create
-
+    redirect_to my_queue_path
   end
 end
