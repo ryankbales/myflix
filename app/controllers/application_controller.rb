@@ -9,10 +9,10 @@ class ApplicationController < ActionController::Base
   	User.find(session[:user_id]) if session[:user_id]
   end
 
-  def average_rating(obj)
+  def average_rating(reviewed_item)
     rating_total = 0
-    review_count = obj.reviews.count
-    obj.reviews.each do |review|
+    review_count = reviewed_item.reviews.count
+    reviewed_item.reviews.each do |review|
       rating_total += review.rating
     end
     rating_total/review_count if rating_total && review_count > 0
