@@ -13,12 +13,12 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    @review = Review.find(params[:id])
+    @review = current_user.reviews.where(id: params[:id]).first
     @video = @review.video
   end
 
   def update
-    @review = Review.find(params[:id])
+    @review = current_user.reviews.where(id: params[:id]).first
     @video = @review.video
     if @review.update(params.require(:review).permit(:rating, :review))
       flash[:notice] = "Your review has been updated."
@@ -26,6 +26,5 @@ class ReviewsController < ApplicationController
     else
       flash[:errors] = "You either didn't give the video a rating or a review."
     end
-    
   end
 end

@@ -20,31 +20,37 @@ describe ReviewsController do
     end
   end
 
-  context "when review being is updated" do
+  context "when review is being updated" do
     describe "GET /videos/:video_id/reviews/:id/edit" do
+      let(:ryan) { Fabricate(:user) }
       let(:video) { Fabricate(:video) }
-      let(:review) { Fabricate(:review, video_id: video.id) }
-      before { get :edit, video_id: video.id, id: review }
+      let(:review) { Fabricate(:review, video_id: video.id, user_id: ryan.id) }
+      before do 
+        session[:user_id] = ryan.id
+        get :edit, video_id: video.id, id: review.id
+      end
       it "sets the @review object" do
         expect(assigns(:review)).to eq(review)
       end
     end
 
     describe "PUT /videos/:video_id/reviews/:id" do
+      let(:ryan) { Fabricate(:user) }
       let(:video) { Fabricate(:video) }
-      let(:review) { Fabricate(:review, video_id: video.id) }
-      let(:new_attributes) do 
-        { rating: 2, review: "New review." }
+      let(:review) do
+        Fabricate(:review, video_id: video.id, user_id: ryan.id, rating: 1, review: "Old review")
       end
+      
       before do
-        put :update, video_id: video.id, id: review
-        review.reload
+        session[:user_id] = ryan.id
+        put :update, video_id: video.id, id: review.id, review: { rating: 2, review: "New review." }
       end
       it "should redirect to video path" do
         expect(response).to redirect_to video_path(video)
       end
-      it "updates the attributes of the review object" do
-        expect(assigns(:review)).to eq(review)
+      it "updates the review" do
+        expect(review.reload.rating).to eq 2
+        expect(review.review).to eq "New review."
       end
       it "sets the flash notice" do
         expect(flash[:notice]).not_to be_blank
