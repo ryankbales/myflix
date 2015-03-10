@@ -1,0 +1,28 @@
+%section.reviews.container
+  .row
+    .col-sm-10.col-sm-offset-1
+      = bootstrap_form_for [@video, @review] do |f|
+        %fieldset
+          .form-group
+            .row
+              .col-sm-3
+                = f.select :rating, [["5 Stars", 5], ["4 Stars", 4], ["3 Stars", 3], ["2 Stars", 2], ["1 Stars", 1]], { label: "Rate this Video" }, { class: 'form-control' }
+          .form-group
+            .row
+              .col-sm-8
+                = f.text_area :review, { label: "Write Review" , class: 'form-control', rows: 6 }
+        %fieldset.form-group.actions.clearfix
+          = f.submit class: 'btn'
+          = link_to 'Cancel', videos_path
+      %header
+        %h3= "User Reviews (#{@video.reviews.count})" 
+      %ul
+        - @video.reviews.each do |review|
+          %article.review
+            %li.row
+              .col-sm-2
+                %span= "Rating: #{review.rating} / 5"
+                %p= link_to "by #{review.user.full_name}", user_path(review.user)
+                %p= link_to "Edit Review", edit_video_review_path(@video, review) if current_user == review.user
+              .col-sm-8
+                %p=  "#{review.review}"
