@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe UsersController  do
-  describe "GET new" do, :auth
+  describe "GET new", :auth do
     it "sets @user" do
       get :new
       expect(assigns(:user)).to be_instance_of(User)
