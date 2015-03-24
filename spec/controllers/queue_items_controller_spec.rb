@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe QueueItemsController do
   describe 'GET index' do
+    let(:ryan) {Fabricate(:user)}
     it "sets @queue_items to the queued items of the logged in user" do
-      ryan = Fabricate(:user)
-      session[:user_id] = ryan.id
+      set_current_user(ryan)
       item_1 = Fabricate(:queue_item, user: ryan)
       item_2 = Fabricate(:queue_item, user: ryan)
       get :index
@@ -18,25 +18,25 @@ describe QueueItemsController do
 
   describe "POST create" do
     context "when a user adds a video to the queue" do
+      let(:ryan) { Fabricate(:user) }
       let(:video) { Fabricate(:video) }
       it "redirects to the my queue page" do
-        session[:user_id] = Fabricate(:user).id
+        set_current_user(ryan)
         post :create, video_id: video.id
         expect(response).to redirect_to my_queue_path
       end
       it "creates a queue item" do
-        session[:user_id] = Fabricate(:user).id
+        set_current_user(ryan)
         post :create, video_id: video.id
         expect(QueueItem.count).to eq(1)
       end
       it "creates the queue item that is associated with the video" do
-        session[:user_id] = Fabricate(:user).id
+        set_current_user(ryan)
         post :create, video_id: video.id
         expect(QueueItem.first.video).to eq(video)
       end
       it "creates the queue item that is associated with the user" do
-        ryan = Fabricate(:user)
-        session[:user_id] = ryan.id
+        set_current_user(ryan)
         post :create, video_id: video.id
         expect(QueueItem.first.user).to eq(ryan)
       end
@@ -44,9 +44,9 @@ describe QueueItemsController do
     context "when a queue item is created and there is more than one" do
       let(:video) { Fabricate(:video) }
       let(:next_video) { Fabricate(:video) }
+      let(:ryan) { Fabricate(:user) }
       it "puts the video as the last video in the queue" do
-        ryan = Fabricate(:user)
-        session[:user_id] = ryan.id
+        set_current_user(ryan)
         Fabricate(:queue_item, video_id: video.id, user: ryan)
         post :create, video_id: next_video.id
         next_video_queue_item = QueueItem.where(video_id: next_video.id, user_id: ryan.id).first
@@ -56,9 +56,9 @@ describe QueueItemsController do
 
     context "when a queue time contains a video that is already in the queue" do
       let(:video) { Fabricate(:video) }
+      let(:ryan) { Fabricate(:user) }
       it "does not add a duplicate video" do
-        ryan = Fabricate(:user)
-        session[:user_id] = ryan.id
+        set_current_user(ryan)
         Fabricate(:queue_item, video_id: video.id, user: ryan)
         post :create, video_id: video.id
         expect(ryan.queue_items.count).to eq(1)
@@ -75,34 +75,40 @@ describe QueueItemsController do
 
   describe "DELETE destroy" do
     context "when deleting the queue for the associated user" do
-      let(:user) { Fabricate(:user) }
-      let(:queue_item) { Fabricate(:queue_item, user: user) }
+      before do
+        set_current_user
+      end
+      let(:queue_item) { Fabricate(:queue_item, user_id: User.find(session[:user_id]).id) }
+      
       it "redirects to the my queue page" do
-        session[:user_id] = user.id
         delete :destroy, id: queue_item.id
         expect(response).to redirect_to my_queue_path
       end
       it "deletes the queue item" do
-        session[:user_id] = user.id
         delete :destroy, id: queue_item.id
         expect(QueueItem.count).to eq(0)
       end
+    end
+
+    context "with multiple queue items" do
+      let(:laura) { Fabricate(:user) }
+      let!(:queue_item1) {Fabricate(:queue_item, user_id: laura.id, position: 1)}
+      let!(:queue_item2) {Fabricate(:queue_item, user_id: laura.id, position: 2)}
+      before do
+        set_current_user(laura)
+      end
       it "nomalizes the remaining queue items" do
-        laura = Fabricate(:user)
-        session[:user_id] = laura.id
-        queue_item1 = Fabricate(:queue_item, user: laura, position: 1)
-        queue_item2 = Fabricate(:queue_item, user: laura, position: 2)
         delete :destroy, id: queue_item1.id
         expect(QueueItem.first.reload.position).to eq(1)
       end
     end
 
     context "when trying to delete a queue item that does not belong to the current user" do
-      let(:ryan) { Fabricate(:user) }
       let(:laura) { Fabricate(:user) }
+      let(:ryan) { Fabricate(:user) }
       let(:queue_item) { Fabricate(:queue_item, user_id: laura.id) }
       it "does not delete the item if it is not in the current users queue" do
-        session[:user_id] = ryan.id
+        set_current_user(ryan)
         delete :destroy, id: queue_item.id
         expect(QueueItem.count).to eq(1)
       end
@@ -124,7 +130,7 @@ describe QueueItemsController do
       let(:queue_item1) {Fabricate(:queue_item, user: laura, position: 1, video: video)}
       let(:queue_item2) {Fabricate(:queue_item, user: laura, position: 2, video: video)}
       before do
-        session[:user_id] = laura.id
+        set_current_user(laura)
       end
       it "redirects to the my queue page" do
         post :update_queue, queue_items: [{id: queue_item1.id, position: 2}, {id: queue_item2.id, position: 1}]
@@ -146,7 +152,7 @@ describe QueueItemsController do
       let(:queue_item1) {Fabricate(:queue_item, user: laura, position: 1, video: video)}
       let(:queue_item2) {Fabricate(:queue_item, user: laura, position: 2, video: video)}
       before do
-        session[:user_id] = laura.id
+        set_current_user(laura)
       end
       it "redirects to the my queue page" do
         post :update_queue, queue_items: [{id: queue_item1.id, position: 3.5}, {id: queue_item2.id, position: 2}]
@@ -176,7 +182,7 @@ describe QueueItemsController do
       let(:queue_item1) {Fabricate(:queue_item, user: laura, position: 1, video: video)}
       let(:queue_item2) {Fabricate(:queue_item, user: ryan, position: 2, video: video)}
       before do
-        session[:user_id] = laura.id
+        set_current_user(laura)
       end
       it "should not update the queue items" do
         post :update_queue, queue_items: [{id: queue_item1.id, position: 3}, {id: queue_item2.id, position: 4}]
