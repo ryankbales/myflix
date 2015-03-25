@@ -39,6 +39,7 @@ describe QueueItem do
       queue_item.rating = 4
       expect(Review.first.rating).to eq(4)
     end
+
     it "clears the rating of the review if the review is present" do
       video = Fabricate(:video)
       ryan = Fabricate(:user)
@@ -47,6 +48,7 @@ describe QueueItem do
       queue_item.rating = nil
       expect(Review.first.rating).to be_nil
     end
+
     it "creates a review with the rating if the review is not present" do
       video = Fabricate(:video)
       ryan = Fabricate(:user)
@@ -55,6 +57,7 @@ describe QueueItem do
       expect(Review.first.rating).to eq(3)
     end
   end
+
 
   describe '#category_name' do
     it "returns the category's name of the video" do
