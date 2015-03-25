@@ -214,7 +214,7 @@ describe QueueItemsController do
       let(:queue_item2) {Fabricate(:queue_item, user: ryan, position: 2, video: video)}
       before { set_current_user(laura) }
 
-      it "should not update the queue items" do
+      it "does not update the queue items" do
         post :update_queue, queue_items: [{id: queue_item1.id, position: 3}, {id: queue_item2.id, position: 4}]
         expect(queue_item2.reload.position).to eq(2)
       end

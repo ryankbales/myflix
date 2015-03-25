@@ -27,7 +27,6 @@ feature "User interacts with the queue" do
     expect_video_position(dances_with, 3)
     expect_video_position(donnie, 2)
     expect_video_position(village, 1)
-   
   end
 
   def expect_link_not_to_be_seen(link_text)
