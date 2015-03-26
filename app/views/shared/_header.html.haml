@@ -5,7 +5,7 @@
     %ul.col-md-4.clearfix
       %li= link_to "Videos", "/home"
       %li= link_to "My Queue", "/my_queue"
-      %li= link_to "People"
+      %li= link_to "People", people_path
     = form_tag videos_path, method: 'get', class: 'col-md-5 navbar-form' do
       .form-group
         = text_field_tag :search, params[:search], placeholder: "Search for a Video", class: 'form-control'
