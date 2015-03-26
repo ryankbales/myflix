@@ -8,6 +8,7 @@ describe User do
 
   it {should have_many(:reviews).order('created_at DESC')}
   it {should have_many(:queue_items).order('position asc')}
+  it {should have_many(:following_relationships)}
 
   describe "#queued_video?" do
 
