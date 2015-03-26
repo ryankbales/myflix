@@ -16,7 +16,6 @@ feature 'User following' do
 
     unfollows(laura)
     expect(page).not_to have_content(laura.full_name)
-
   end
 
   def unfollows(user)
