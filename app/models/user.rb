@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   has_many :queue_items, -> { order('position asc') }
   has_many :following_relationships, class_name: "Relationship", foreign_key: "follower_id"
 
+  before_create :generate_token
+
   def normalize_queue_item_positions
     queue_items.each_with_index do |queue_item, index|
       queue_item.update_attributes(position: index + 1)
@@ -28,5 +30,11 @@ class User < ActiveRecord::Base
     else
       true
     end
+  end
+
+  private
+
+  def generate_token
+    self.token = SecureRandom.urlsafe_base64
   end
 end

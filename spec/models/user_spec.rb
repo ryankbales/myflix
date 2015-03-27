@@ -10,6 +10,11 @@ describe User do
   it {should have_many(:queue_items).order('position asc')}
   it {should have_many(:following_relationships)}
 
+  it "generates a random token when the user is created" do
+    laura = Fabricate(:user)
+    expect(laura.token).to be_present
+  end
+
   describe "#queued_video?" do
     it "returns true when the queued the video" do
       user = Fabricate(:user)
