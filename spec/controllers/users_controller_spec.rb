@@ -63,7 +63,7 @@ describe UsersController  do
   end
 
   describe "GET show" do
-    let(:laura) {Fabricate(:user)}
+    let(:laura) { Fabricate(:user) }
     it_behaves_like "requires sign in" do
       let(:action) { get :show, id: 3}
     end

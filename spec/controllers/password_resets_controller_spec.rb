@@ -24,7 +24,7 @@ describe PasswordResetsController do
 
   describe "POST create" do
     context "with valid token" do
-      let(:laura) {Fabricate(:user, password: 'old_password')}
+      let(:laura) { Fabricate(:user, password: 'old_password') }
 
       it "should redirect to the sign in page" do
         laura.update_column(:token, '12345')

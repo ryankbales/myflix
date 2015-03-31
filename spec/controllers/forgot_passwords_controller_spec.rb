@@ -21,21 +21,25 @@ describe ForgotPasswordsController do
         post :create, email: 'ryan@example.com'
         expect(response).to redirect_to forgot_password_confirmation_path
       end
+
       it "sends out an email to the email address" do
         Fabricate(:user, email: 'ryan@example.com')
         post :create, email: 'ryan@example.com'
         expect(ActionMailer::Base.deliveries.last.to).to eq(["ryan@example.com"])
       end
+
     end
     context "without an existing email" do
       it "redirects to the forgot password page" do
         post :create, email: 'foo@example.com'
         expect(response).to redirect_to forgot_password_path
       end
+
       it "shows an error message" do
         post :create, email: 'foo@example.com'
         expect(flash[:error]).to eq("There is no user with that email address.")
       end
+      
     end
   end
 end

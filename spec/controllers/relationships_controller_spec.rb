@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 describe RelationshipsController do
-  let(:ryan) {Fabricate(:user)}
-  let(:laura) {Fabricate(:user)}
-  let(:ranger) {Fabricate(:user)}
-  let(:relationship) {Fabricate(:relationship, follower_id: ryan.id, leader_id: laura.id)}
-  let(:relationship2) {Fabricate(:relationship, follower_id: ranger.id, leader_id: laura.id)}
+  let(:ryan) { Fabricate(:user) }
+  let(:laura) { Fabricate(:user) }
+  let(:ranger) { Fabricate(:user) }
+  let(:relationship) { Fabricate(:relationship, follower_id: ryan.id, leader_id: laura.id) }
+  let(:relationship2) { Fabricate(:relationship, follower_id: ranger.id, leader_id: laura.id) }
   describe "GET index" do
     
     it "sets @relationships to the current user's following relationships" do
@@ -44,8 +44,8 @@ describe RelationshipsController do
     end
 
     describe "POST create" do
-      let(:ryan) {Fabricate(:user)}
-      let(:laura) {Fabricate(:user)}
+      let(:ryan) { Fabricate(:user) }
+      let(:laura) { Fabricate(:user) }
 
       it_behaves_like "requires sign in" do
         let(:action) {post :create, id: 4}
