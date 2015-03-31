@@ -3,7 +3,7 @@ require 'spec_helper'
 describe QueueItemsController do
   describe 'GET index' do
 
-    let(:ryan) {Fabricate(:user)}
+    let(:ryan) { Fabricate(:user) }
 
     it "sets @queue_items to the queued items of the logged in user" do
       set_current_user(ryan)
@@ -110,8 +110,8 @@ describe QueueItemsController do
     context "with multiple queue items" do
 
       let(:laura) { Fabricate(:user) }
-      let!(:queue_item1) {Fabricate(:queue_item, user_id: laura.id, position: 1)}
-      let!(:queue_item2) {Fabricate(:queue_item, user_id: laura.id, position: 2)}
+      let!(:queue_item1) { Fabricate(:queue_item, user_id: laura.id, position: 1) }
+      let!(:queue_item2) { Fabricate(:queue_item, user_id: laura.id, position: 2) }
       before { set_current_user(laura) }
 
       it "nomalizes the remaining queue items" do
@@ -149,10 +149,10 @@ describe QueueItemsController do
   describe "POST update_queue" do
     context "with valid inputs" do
 
-      let(:laura) {Fabricate(:user)}
-      let(:video) {Fabricate(:video)}
-      let(:queue_item1) {Fabricate(:queue_item, user: laura, position: 1, video: video)}
-      let(:queue_item2) {Fabricate(:queue_item, user: laura, position: 2, video: video)}
+      let(:laura) { Fabricate(:user) }
+      let(:video) { Fabricate(:video) }
+      let(:queue_item1) { Fabricate(:queue_item, user: laura, position: 1, video: video) }
+      let(:queue_item2) { Fabricate(:queue_item, user: laura, position: 2, video: video) }
       before { set_current_user(laura) }
 
       it "redirects to the my queue page" do
@@ -174,10 +174,10 @@ describe QueueItemsController do
 
     context "with invalid inputs" do
 
-      let(:laura) {Fabricate(:user)}
-      let(:video) {Fabricate(:video)}
-      let(:queue_item1) {Fabricate(:queue_item, user: laura, position: 1, video: video)}
-      let(:queue_item2) {Fabricate(:queue_item, user: laura, position: 2, video: video)}
+      let(:laura) { Fabricate(:user) }
+      let(:video) { Fabricate(:video) }
+      let(:queue_item1) { Fabricate(:queue_item, user: laura, position: 1, video: video) }
+      let(:queue_item2) { Fabricate(:queue_item, user: laura, position: 2, video: video) }
       before { set_current_user(laura) }
 
       it "redirects to the my queue page" do
@@ -207,11 +207,11 @@ describe QueueItemsController do
 
     context "with queue items that do not belong to the current user" do
 
-      let(:laura) {Fabricate(:user)}
-      let(:ryan) {Fabricate(:user)}
-      let(:video) {Fabricate(:video)}
-      let(:queue_item1) {Fabricate(:queue_item, user: laura, position: 1, video: video)}
-      let(:queue_item2) {Fabricate(:queue_item, user: ryan, position: 2, video: video)}
+      let(:laura) { Fabricate(:user) }
+      let(:ryan) { Fabricate(:user) }
+      let(:video) { Fabricate(:video) }
+      let(:queue_item1) { Fabricate(:queue_item, user: laura, position: 1, video: video) }
+      let(:queue_item2) { Fabricate(:queue_item, user: ryan, position: 2, video: video) }
       before { set_current_user(laura) }
 
       it "does not update the queue items" do
