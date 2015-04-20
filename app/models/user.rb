@@ -24,6 +24,10 @@ class User < ActiveRecord::Base
     following_relationships.map(&:leader).include?(a_user)
   end
 
+  def follow(another_user)
+    following_relationships.create(leader: another_user) if self.can_follow?(another_user)
+  end
+
   def can_follow?(a_leader)
     if follows?(a_leader) || self == a_leader
       false
