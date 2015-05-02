@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  include Tokenable
+
   validates_presence_of :email, :password, :full_name
   validates_uniqueness_of :email
 
@@ -34,9 +36,5 @@ class User < ActiveRecord::Base
     else
       true
     end
-  end
-
-  def generate_token
-    self.token = SecureRandom.urlsafe_base64
   end
 end
