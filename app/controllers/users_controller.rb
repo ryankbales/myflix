@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      process_invitation
       AppMailer.send_welcome_email(@user).deliver
       redirect_to sign_in_path
     else
@@ -18,7 +19,29 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def new_with_invitation_token
+    invitation = Invitation.find_by_token(params[:token])
+    if invitation
+      @invitation_token = invitation.token
+      @user = User.new(email: invitation.recipient_email)
+      render :new
+    else
+      redirect_to expired_token_path
+    end
+  end
+
   def user_params
     params.require(:user).permit(:email, :password, :full_name)
+  end
+
+  private
+
+  def process_invitation
+    if params[:invitation_token].present?
+      invitation = Invitation.find_by_token(params[:invitation_token])
+      @user.follow(invitation.inviter)
+      invitation.inviter.follow(@user)
+      invitation.update_column(:token, nil)
+    end
   end
 end

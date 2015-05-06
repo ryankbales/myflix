@@ -45,6 +45,21 @@ describe User do
     end
   end
 
+  describe "#follow" do
+    it "follows another user" do
+      laura = Fabricate(:user)
+      ryan = Fabricate(:user)
+      laura.follow(ryan)
+      expect(laura.follows?(ryan)).to be_truthy
+    end
+
+    it "does not follow one self" do
+      laura = Fabricate(:user)
+      laura.follow(laura)
+      expect(laura.follows?(laura)).to be_falsey
+    end
+  end
+
   describe "#can_follow?" do
     it "returns true if the current user can follow another user" do
       follower = Fabricate(:user)
