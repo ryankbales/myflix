@@ -60,9 +60,7 @@ describe InvitationsController do
 
       it "does not send out an email" do
         set_current_user
-        delivery_count = ActionMailer::Base.deliveries.count
-        post :create, invitation: { recipient_email: "laura@email.com", message: "Join MyFlix now!" }
-        expect{delivery_count}.to_not change{delivery_count}.from(delivery_count).to(delivery_count + 1)
+        expect { post :create, invitation: { recipient_email: "laura@email.com", message: "Join MyFlix now!" } }.to_not change { ActionMailer::Base.deliveries.count }
       end
 
       it "sets the flash error message" do
