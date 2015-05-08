@@ -13,6 +13,7 @@ gem 'bootstrap_form'
 gem 'bcrypt-ruby'
 gem 'figaro'
 gem 'sidekiq'
+gem 'unicorn'
 
 group :development do
   gem 'thin'
