@@ -14,6 +14,7 @@ gem 'bcrypt-ruby'
 gem 'figaro'
 gem 'sidekiq'
 gem 'unicorn'
+gem 'newrelic_rpm'
 
 group :development do
   gem 'thin'
