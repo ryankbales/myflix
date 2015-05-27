@@ -16,6 +16,7 @@ gem 'sidekiq'
 gem 'unicorn'
 gem 'newrelic_rpm'
 gem 'carrierwave-aws'
+gem "mini_magick"
 
 group :development do
   gem 'thin'
