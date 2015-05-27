@@ -3,6 +3,9 @@ class Video < ActiveRecord::Base
   has_many :reviews
   validates_presence_of :title, :description
 
+  mount_uploader :large_cover, LargeCoverUploader
+  mount_uploader :small_cover, SmallCoverUploader
+
   def self.search_by_title(title)
     if title
       return [] if title.blank?
