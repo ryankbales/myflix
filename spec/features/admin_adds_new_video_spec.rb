@@ -8,7 +8,8 @@ feature 'Admin adds new video' do
     visit new_admin_video_path
 
     fill_in "Title", with: "Clockwork Orange"
-    select "Cult", from: "Category"
+    find(:select).first(:option, 'Cult').select_option
+    # select "Cult", from: "Category"
     fill_in "Description", with: "Freaky movie!"
     attach_file "Upload Large Cover Image", "spec/support/uploads/donnie_darko_large.jpg"
     attach_file "Upload Small Cover Image", "spec/support/uploads/donnie_darko_small.jpg"
