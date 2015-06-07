@@ -13,7 +13,10 @@ describe UsersController  do
   describe "POST create" do
     context "with valid input" do
 
-      before { post :create, user: Fabricate.attributes_for(:user) }
+      before do
+        StripeWrapper::Charge.stub(:create)
+        post :create, user: Fabricate.attributes_for(:user)
+      end
 
       it "should create the user" do
         expect(User.count).to eq(1)
@@ -25,10 +28,14 @@ describe UsersController  do
     end
 
     context "when new user visits via an invite" do
+
       let(:laura) { Fabricate(:user) }
       let(:invitation) { Fabricate(:invitation, inviter_id: laura.id, recipient_email: 'ryan@email.com') }
 
-      before { post :create, user: {email: 'ryan@email.com', password: "password", full_name: 'Ry Dog'}, invitation_token: invitation.token }
+      before do
+        StripeWrapper::Charge.stub(:create)
+        post :create, user: {email: 'ryan@email.com', password: "password", full_name: 'Ry Dog'}, invitation_token: invitation.token
+      end
 
       it "makes the user follow the inviter" do
         ryan = User.find_by_email('ryan@email.com')
@@ -64,6 +71,10 @@ describe UsersController  do
     end
 
     context "sending emails" do
+
+      before do
+         StripeWrapper::Charge.stub(:create)
+      end
       
       after { ActionMailer::Base.deliveries.clear }
 

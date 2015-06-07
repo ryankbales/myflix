@@ -8,18 +8,12 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       process_invitation
-      # Set your secret key: remember to change this to your live secret key in production
-      # See your keys here https://dashboard.stripe.com/account/apikeys
       Stripe.api_key = ENV['STRIPE_SECRET_KEY']
-
-      # Get the credit card details submitted by the form
       token = params[:stripeToken]
 
-      # Create the charge on Stripe's servers - this will charge the user's card
       begin
-        charge = Stripe::Charge.create(
+        StripeWrapper::Charge.create(
           :amount => 999, # amount in cents, again
-          :currency => "usd",
           :source => token,
           :description => "Sign up charge for #{@user.email}"
         )
