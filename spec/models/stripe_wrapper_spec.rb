@@ -15,7 +15,8 @@ describe StripeWrapper do
 
         response = StripeWrapper::Charge.create(
             amount: 999,
-            card: token,
+            currency: "usd",
+            source: token,
             description: "valid charge"
           )
 
@@ -34,7 +35,8 @@ describe StripeWrapper do
 
         response = StripeWrapper::Charge.create(
             amount: 999,
-            card: token,
+            currency: "usd",
+            source: token,
             description: "invalid charge"
           )
 
@@ -53,7 +55,8 @@ describe StripeWrapper do
 
         response = StripeWrapper::Charge.create(
             amount: 999,
-            card: token,
+            currency: "usd",
+            source: token,
             description: "invalid charge"
           )
 

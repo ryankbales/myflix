@@ -20,6 +20,7 @@ class UsersController < ApplicationController
         @user.save
         process_invitation
         AppMailer.send_welcome_email(@user).deliver
+        flash[:success] = "You are registered with MyFlix.  Please sign in now."
         redirect_to sign_in_path
       else
         flash[:error] = charge.error_message
