@@ -12,7 +12,7 @@ class Admin::VideosController < ApplicationController
       flash[:success] = "You have created a new video."
       redirect_to new_admin_video_path
     else
-      flash[:error] = "You forgot to enter some required video info."
+      flash.now[:error] = "You forgot to enter some required video info."
       render :new
     end
   end
