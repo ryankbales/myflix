@@ -18,7 +18,7 @@ feature 'User invites friend' do
 
     sign_in(laura)
     click_link "People"
-    expect(page).to have_content "Royal Ranger"
+    expect(page).to have_content full_name
 
     clear_email
   end

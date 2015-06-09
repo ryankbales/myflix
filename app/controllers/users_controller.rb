@@ -9,11 +9,12 @@ class UsersController < ApplicationController
     if @user.valid?
       token = params[:stripeToken]
 
-      charge = StripeWrapper::Charge.create(
-        :amount => 999, # amount in cents, again
-        :source => token,
-        :description => "Sign up charge for #{@user.email}"
-      )
+      charge = StripeWrapper::Charge.create({
+        amount: 999,
+        currency: "usd",
+        source: token,
+        description: "Sign up charge for #{@user.email}"
+      })
 
       if charge.successful?
         @user.save

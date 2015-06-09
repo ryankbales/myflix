@@ -39,6 +39,8 @@ describe UsersController  do
         post :create, user: {email: 'ryan@email.com', password: "password", full_name: 'Ry Dog'}, invitation_token: invitation.token
       end
 
+      after { ActionMailer::Base.deliveries.clear }
+
       it "makes the user follow the inviter" do
         ryan = User.find_by_email('ryan@email.com')
         expect(ryan.follows?(laura)).to be_truthy
@@ -72,13 +74,12 @@ describe UsersController  do
       it "sets the flash error message" do
         expect(flash[:error]).to be_present
       end
+
     end
 
     context "with invalid personal info" do
 
-      before do
-        post :create, user: { password: "password", full_name: "Ryan Bales" } 
-      end
+      before { post :create, user: { email: "ryan@example.com" } }
 
       it "does not create a user" do
         expect(User.count).to eq(0)
@@ -97,8 +98,7 @@ describe UsersController  do
       end
 
       it "does not send out email with invalid input" do
-        post :create, user: { email: "ryan@example.com" }
-        expect(ActionMailer::Base.deliveries).to be_empty
+        AppMailer.should_not_receive(:send_welcome_email)
       end
       
     end
