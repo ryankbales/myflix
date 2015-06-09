@@ -23,11 +23,11 @@ class UsersController < ApplicationController
         flash[:success] = "You are registered with MyFlix.  Please sign in now."
         redirect_to sign_in_path
       else
-        flash[:error] = charge.error_message
+        flash.now[:error] = charge.error_message
         render :new
       end
     else
-      flash[:error] = "Invalid user information. Please check the errors below."
+      flash.now[:error] = "Invalid user information. Please check the errors below."
       render :new
     end
   end
