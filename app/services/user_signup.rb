@@ -1,7 +1,7 @@
 class UserSignup
   attr_reader :error_message
 
-  def intialize(user)
+  def initialize(user)
     @user = user
   end
 
