@@ -28,15 +28,19 @@ describe UsersController  do
       end
     end
 
-    context "when new user visits via an invite" do
+    context "when new user visits via an invite", :vcr do
 
       let(:laura) { Fabricate(:user) }
       let(:invitation) { Fabricate(:invitation, inviter_id: laura.id, recipient_email: 'ryan@email.com') }
 
       before do
-        charge = double(:charge, successful?: true)
+        token = Stripe::Token.create(:card => {:number => "4242424242424242", :exp_month => 6, :exp_year => 2018, :cvc => "314"}, ).id
+
+        charge = double(:charge, amount: 999, currency: "usd", source: token, description: "valid charge", successful?: true)
+        
         StripeWrapper::Charge.should_receive(:create).and_return(charge)
-        post :create, user: {email: 'ryan@email.com', password: "password", full_name: 'Ry Dog'}, invitation_token: invitation.token
+
+        post :create, user: {email: 'ryan@email.com', password: "password", full_name: 'Ry Dog', stripeToken: charge.source, token: invitation.token} 
       end
 
       after { ActionMailer::Base.deliveries.clear }
