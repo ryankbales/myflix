@@ -20,11 +20,9 @@ class UserSignup
         process_invitation(invitation_token)
         AppMailer.send_welcome_email(@user).deliver
         @status = :success
-        self
       else
         @status = :failed
         @error_message = charge.error_message
-        self
       end
     else
       @status = :failed
@@ -41,7 +39,7 @@ class UserSignup
 
   def process_invitation(invitation_token)
     if invitation_token.present?
-      invitation = Invitation.find_by_token(invitation_token)
+      invitation = Invitation.where(["token = :t", { t: invitation_token }]).first
       @user.follow(invitation.inviter)
       invitation.inviter.follow(@user)
       invitation.update_column(:token, nil)

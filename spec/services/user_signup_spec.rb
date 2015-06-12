@@ -8,7 +8,7 @@ describe UserSignup do
          StripeWrapper::Charge.should_receive(:create).and_return(charge)
        end
 
-      it "should create the user" do
+      it "creates the user" do
         UserSignup.new(Fabricate.build(:user)).sign_up("stripe token", nil)
         expect(User.count).to eq(1)
       end
