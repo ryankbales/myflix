@@ -27,8 +27,8 @@ class UserSignup
     else
       @status = :failed
       @error_message = "Invalid user information. Please check the errors below."
-      self
     end
+    self
   end
 
   def successful?

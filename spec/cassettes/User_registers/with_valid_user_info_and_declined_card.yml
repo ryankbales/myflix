@@ -5,7 +5,7 @@ http_interactions:
     uri: https://api.stripe.com/v1/charges
     body:
       encoding: US-ASCII
-      string: amount=999&currency=usd&source=tok_16BgCzJQmdZI8GFqNPrqmYAL&description=Sign%20up%20charge%20for%20dax%40email.com
+      string: amount=999&currency=usd&source=tok_16CgcDJQmdZI8GFqvsBVl0Ej&description=Sign%20up%20charge%20for%20dax%40email.com
     headers:
       Accept:
       - "*/*; q=0.5, application/xml"
@@ -31,7 +31,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Tue, 09 Jun 2015 06:27:37 GMT
+      - Fri, 12 Jun 2015 01:05:50 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -49,7 +49,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_D0IClWn0J40WrG7I
+      - req_amp6bEh5Gh5a3yoo
       Stripe-Version:
       - '2015-04-07'
     body:
@@ -60,9 +60,9 @@ http_interactions:
             "message": "Your card was declined.",
             "type": "card_error",
             "code": "card_declined",
-            "charge": "ch_16BgCzJQmdZI8GFqpD77FvtY"
+            "charge": "ch_16CgcEJQmdZI8GFqDPlgUWsR"
           }
         }
     http_version: 
-  recorded_at: Tue, 09 Jun 2015 06:27:37 GMT
+  recorded_at: Fri, 12 Jun 2015 01:05:50 GMT
 recorded_with: VCR 2.9.3
