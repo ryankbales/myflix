@@ -31,7 +31,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 12 Jun 2015 02:25:37 GMT
+      - Fri, 12 Jun 2015 02:28:30 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -49,7 +49,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_2e8ifPm7rVBtRU8i
+      - req_7cmhtocawpmcQEne
       Stripe-Version:
       - '2015-04-07'
       Strict-Transport-Security:
@@ -58,14 +58,14 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "tok_16ChrRJQmdZI8GFqFRR3Z0t2",
+          "id": "tok_16ChuEJQmdZI8GFq3JsRGKeN",
           "livemode": false,
-          "created": 1434075937,
+          "created": 1434076110,
           "used": false,
           "object": "token",
           "type": "card",
           "card": {
-            "id": "card_16ChrRJQmdZI8GFqu46Z0Gwa",
+            "id": "card_16ChuEJQmdZI8GFqv0YbJXLd",
             "object": "card",
             "last4": "0002",
             "brand": "Visa",
@@ -90,13 +90,13 @@ http_interactions:
           "client_ip": "204.80.187.225"
         }
     http_version: 
-  recorded_at: Fri, 12 Jun 2015 02:25:36 GMT
+  recorded_at: Fri, 12 Jun 2015 02:28:29 GMT
 - request:
     method: post
-    uri: https://api.stripe.com/v1/charges
+    uri: https://api.stripe.com/v1/customers
     body:
       encoding: US-ASCII
-      string: amount=999&currency=usd&source=tok_16ChrRJQmdZI8GFqFRR3Z0t2&description=invalid%20charge
+      string: source=tok_16ChuEJQmdZI8GFq3JsRGKeN&plan=basic&email=alize_bosco%40rogahn.com
     headers:
       Accept:
       - "*/*; q=0.5, application/xml"
@@ -113,7 +113,7 @@ http_interactions:
         BALES-MAC-DADDY.local 14.1.0 Darwin Kernel Version 14.1.0: Mon Dec 22 23:10:38
         PST 2014; root:xnu-2782.10.72~2/RELEASE_X86_64 x86_64","hostname":"BALES-MAC-DADDY.local"}'
       Content-Length:
-      - '88'
+      - '77'
   response:
     status:
       code: 402
@@ -122,11 +122,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 12 Jun 2015 02:25:37 GMT
+      - Fri, 12 Jun 2015 02:28:30 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '162'
+      - '134'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -140,7 +140,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_hcrXpABU2iWTtLuP
+      - req_DTCVppMhSdozWKEf
       Stripe-Version:
       - '2015-04-07'
     body:
@@ -150,10 +150,10 @@ http_interactions:
           "error": {
             "message": "Your card was declined.",
             "type": "card_error",
-            "code": "card_declined",
-            "charge": "ch_16ChrRJQmdZI8GFqYqoHdZ6L"
+            "param": "",
+            "code": "card_declined"
           }
         }
     http_version: 
-  recorded_at: Fri, 12 Jun 2015 02:25:37 GMT
+  recorded_at: Fri, 12 Jun 2015 02:28:30 GMT
 recorded_with: VCR 2.9.3

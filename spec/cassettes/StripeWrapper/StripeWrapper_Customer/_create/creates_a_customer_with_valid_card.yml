@@ -31,7 +31,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 12 Jun 2015 02:25:35 GMT
+      - Fri, 12 Jun 2015 02:25:39 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -49,7 +49,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_WlKCTCadUnd90Bh2
+      - req_yOjFO4gXI4DXKHgK
       Stripe-Version:
       - '2015-04-07'
       Strict-Transport-Security:
@@ -58,14 +58,14 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "tok_16ChrPJQmdZI8GFqrF0i0HlW",
+          "id": "tok_16ChrTJQmdZI8GFqCc5vJeZ2",
           "livemode": false,
-          "created": 1434075935,
+          "created": 1434075939,
           "used": false,
           "object": "token",
           "type": "card",
           "card": {
-            "id": "card_16ChrOJQmdZI8GFqnROwL4Up",
+            "id": "card_16ChrTJQmdZI8GFqQpKgN5JY",
             "object": "card",
             "last4": "4242",
             "brand": "Visa",
@@ -90,13 +90,13 @@ http_interactions:
           "client_ip": "204.80.187.225"
         }
     http_version: 
-  recorded_at: Fri, 12 Jun 2015 02:25:34 GMT
+  recorded_at: Fri, 12 Jun 2015 02:25:39 GMT
 - request:
     method: post
-    uri: https://api.stripe.com/v1/charges
+    uri: https://api.stripe.com/v1/customers
     body:
       encoding: US-ASCII
-      string: amount=999&currency=usd&source=tok_16ChrPJQmdZI8GFqrF0i0HlW&description=valid%20charge
+      string: source=tok_16ChrTJQmdZI8GFqCc5vJeZ2&plan=basic&email=reie_wilderman%40streich.org
     headers:
       Accept:
       - "*/*; q=0.5, application/xml"
@@ -113,7 +113,7 @@ http_interactions:
         BALES-MAC-DADDY.local 14.1.0 Darwin Kernel Version 14.1.0: Mon Dec 22 23:10:38
         PST 2014; root:xnu-2782.10.72~2/RELEASE_X86_64 x86_64","hostname":"BALES-MAC-DADDY.local"}'
       Content-Length:
-      - '86'
+      - '81'
   response:
     status:
       code: 200
@@ -122,11 +122,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 12 Jun 2015 02:25:36 GMT
+      - Fri, 12 Jun 2015 02:25:40 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '1400'
+      - '2326'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -140,7 +140,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_OovJwqBaZkBJhUCy
+      - req_cW2ZH5FNgX3IpY4a
       Stripe-Version:
       - '2015-04-07'
       Strict-Transport-Security:
@@ -149,64 +149,92 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "ch_16ChrPJQmdZI8GFqDfWMxtzy",
-          "object": "charge",
-          "created": 1434075935,
+          "object": "customer",
+          "created": 1434075939,
+          "id": "cus_6PWvMgmNAIRNms",
           "livemode": false,
-          "paid": true,
-          "status": "succeeded",
-          "amount": 999,
-          "currency": "usd",
-          "refunded": false,
-          "source": {
-            "id": "card_16ChrOJQmdZI8GFqnROwL4Up",
-            "object": "card",
-            "last4": "4242",
-            "brand": "Visa",
-            "funding": "credit",
-            "exp_month": 6,
-            "exp_year": 2018,
-            "fingerprint": "fRzDtqzYyQefT50I",
-            "country": "US",
-            "name": null,
-            "address_line1": null,
-            "address_line2": null,
-            "address_city": null,
-            "address_state": null,
-            "address_zip": null,
-            "address_country": null,
-            "cvc_check": "pass",
-            "address_line1_check": null,
-            "address_zip_check": null,
-            "dynamic_last4": null,
-            "metadata": {},
-            "customer": null
-          },
-          "captured": true,
-          "balance_transaction": "txn_16ChrPJQmdZI8GFq2I5cvksr",
-          "failure_message": null,
-          "failure_code": null,
-          "amount_refunded": 0,
-          "customer": null,
-          "invoice": null,
-          "description": "valid charge",
-          "dispute": null,
+          "description": null,
+          "email": "reie_wilderman@streich.org",
+          "delinquent": false,
           "metadata": {},
-          "statement_descriptor": null,
-          "fraud_details": {},
-          "receipt_email": null,
-          "receipt_number": null,
-          "shipping": null,
-          "destination": null,
-          "application_fee": null,
-          "refunds": {
+          "subscriptions": {
             "object": "list",
-            "total_count": 0,
+            "total_count": 1,
             "has_more": false,
-            "url": "/v1/charges/ch_16ChrPJQmdZI8GFqDfWMxtzy/refunds",
-            "data": []
-          }
+            "url": "/v1/customers/cus_6PWvMgmNAIRNms/subscriptions",
+            "data": [
+              {
+                "id": "sub_6PWvvpwli1TCKy",
+                "plan": {
+                  "interval": "month",
+                  "name": "Basic Plan",
+                  "created": 1434072668,
+                  "amount": 999,
+                  "currency": "usd",
+                  "id": "basic",
+                  "object": "plan",
+                  "livemode": false,
+                  "interval_count": 1,
+                  "trial_period_days": null,
+                  "metadata": {},
+                  "statement_descriptor": "MyFlix Subscription"
+                },
+                "object": "subscription",
+                "start": 1434075939,
+                "status": "active",
+                "customer": "cus_6PWvMgmNAIRNms",
+                "cancel_at_period_end": false,
+                "current_period_start": 1434075939,
+                "current_period_end": 1436667939,
+                "ended_at": null,
+                "trial_start": null,
+                "trial_end": null,
+                "canceled_at": null,
+                "quantity": 1,
+                "application_fee_percent": null,
+                "discount": null,
+                "tax_percent": null,
+                "metadata": {}
+              }
+            ]
+          },
+          "discount": null,
+          "account_balance": 0,
+          "currency": "usd",
+          "sources": {
+            "object": "list",
+            "total_count": 1,
+            "has_more": false,
+            "url": "/v1/customers/cus_6PWvMgmNAIRNms/sources",
+            "data": [
+              {
+                "id": "card_16ChrTJQmdZI8GFqQpKgN5JY",
+                "object": "card",
+                "last4": "4242",
+                "brand": "Visa",
+                "funding": "credit",
+                "exp_month": 6,
+                "exp_year": 2018,
+                "fingerprint": "fRzDtqzYyQefT50I",
+                "country": "US",
+                "name": null,
+                "address_line1": null,
+                "address_line2": null,
+                "address_city": null,
+                "address_state": null,
+                "address_zip": null,
+                "address_country": null,
+                "cvc_check": "pass",
+                "address_line1_check": null,
+                "address_zip_check": null,
+                "dynamic_last4": null,
+                "metadata": {},
+                "customer": "cus_6PWvMgmNAIRNms"
+              }
+            ]
+          },
+          "default_source": "card_16ChrTJQmdZI8GFqQpKgN5JY"
         }
     http_version: 
-  recorded_at: Fri, 12 Jun 2015 02:25:36 GMT
+  recorded_at: Fri, 12 Jun 2015 02:25:39 GMT
 recorded_with: VCR 2.9.3
