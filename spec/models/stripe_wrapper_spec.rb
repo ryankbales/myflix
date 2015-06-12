@@ -79,6 +79,15 @@ describe StripeWrapper do
         )
         expect(response).not_to be_successful
       end
+
+      it "returns the error message for decline card" do
+        oscar = Fabricate(:user)
+        response = StripeWrapper::Customer.create(
+          email: oscar.email,
+          source: declined_token
+        )
+        expect(response.error_message).to eq("Your card was declined.")
+      end
     end
   end
 end

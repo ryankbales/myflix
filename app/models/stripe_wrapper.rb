@@ -27,10 +27,11 @@ module StripeWrapper
   end
 
   class Customer
-    attr_reader :response
+    attr_reader :response, :error_message
 
     def initialize(options = {})
       @response = options[:response]
+      @error_message = options[:error_message]
     end
 
     def self.create(options = {})
