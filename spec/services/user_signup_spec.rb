@@ -4,7 +4,7 @@ describe UserSignup do
   describe "#sign_up", :vcr do
     context "valid personal info and valid card" do
        before do
-         customer = double(:customer, successful?: true)
+         customer = double(:customer, successful?: true, customer_token: "1a2b3c4d")
          StripeWrapper::Customer.should_receive(:create).and_return(customer)
        end
 
@@ -12,12 +12,17 @@ describe UserSignup do
         UserSignup.new(Fabricate.build(:user)).sign_up("stripe token", nil)
         expect(User.count).to eq(1)
       end
+
+      it "stores the cutomer token from Stripe" do
+        UserSignup.new(Fabricate.build(:user)).sign_up("stripe token", nil)
+        expect(User.first.customer_token).to eq('1a2b3c4d')
+      end
     end
 
     context "sending emails" do
 
       before do
-        customer = double(:customer, successful?: true)
+        customer = double(:customer, successful?: true, customer_token: "1a2b3c4d")
         StripeWrapper::Customer.should_receive(:create).and_return(customer)
       end
       
@@ -39,7 +44,7 @@ describe UserSignup do
       let(:invitation) { Fabricate(:invitation, inviter_id: laura.id, recipient_email: 'ryan@email.com') }
 
       before do
-        customer = double(:customer, successful?: true)
+        customer = double(:customer, successful?: true, customer_token: "1a2b3c4d")
         StripeWrapper::Customer.should_receive(:create).and_return(customer)
         UserSignup.new(Fabricate.build(:user, email: 'ryan@email.com', password: "password", full_name: 'Ry Dog')).sign_up("stripe token", invitation.token)
        end

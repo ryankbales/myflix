@@ -31,7 +31,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 12 Jun 2015 02:25:39 GMT
+      - Sun, 14 Jun 2015 21:38:41 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -49,7 +49,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_yOjFO4gXI4DXKHgK
+      - req_t5lkEo01lTZf0yUh
       Stripe-Version:
       - '2015-04-07'
       Strict-Transport-Security:
@@ -58,14 +58,14 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "tok_16ChrTJQmdZI8GFqCc5vJeZ2",
+          "id": "tok_16DioPJQmdZI8GFqpEou4ubs",
           "livemode": false,
-          "created": 1434075939,
+          "created": 1434317921,
           "used": false,
           "object": "token",
           "type": "card",
           "card": {
-            "id": "card_16ChrTJQmdZI8GFqQpKgN5JY",
+            "id": "card_16DioPJQmdZI8GFqVmdj6N0e",
             "object": "card",
             "last4": "4242",
             "brand": "Visa",
@@ -87,16 +87,16 @@ http_interactions:
             "dynamic_last4": null,
             "metadata": {}
           },
-          "client_ip": "204.80.187.225"
+          "client_ip": "204.80.187.239"
         }
     http_version: 
-  recorded_at: Fri, 12 Jun 2015 02:25:39 GMT
+  recorded_at: Sun, 14 Jun 2015 21:38:41 GMT
 - request:
     method: post
     uri: https://api.stripe.com/v1/customers
     body:
       encoding: US-ASCII
-      string: source=tok_16ChrTJQmdZI8GFqCc5vJeZ2&plan=basic&email=reie_wilderman%40streich.org
+      string: source=tok_16DioPJQmdZI8GFqpEou4ubs&plan=basic&email=anika.jones%40zulaufbraun.org
     headers:
       Accept:
       - "*/*; q=0.5, application/xml"
@@ -113,7 +113,7 @@ http_interactions:
         BALES-MAC-DADDY.local 14.1.0 Darwin Kernel Version 14.1.0: Mon Dec 22 23:10:38
         PST 2014; root:xnu-2782.10.72~2/RELEASE_X86_64 x86_64","hostname":"BALES-MAC-DADDY.local"}'
       Content-Length:
-      - '81'
+      - '82'
   response:
     status:
       code: 200
@@ -122,11 +122,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 12 Jun 2015 02:25:40 GMT
+      - Sun, 14 Jun 2015 21:38:41 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '2326'
+      - '2327'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -140,7 +140,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_cW2ZH5FNgX3IpY4a
+      - req_OBJF9PXFsUhIFUgf
       Stripe-Version:
       - '2015-04-07'
       Strict-Transport-Security:
@@ -150,21 +150,21 @@ http_interactions:
       string: |
         {
           "object": "customer",
-          "created": 1434075939,
-          "id": "cus_6PWvMgmNAIRNms",
+          "created": 1434317921,
+          "id": "cus_6QZyhIzfj615wW",
           "livemode": false,
           "description": null,
-          "email": "reie_wilderman@streich.org",
+          "email": "anika.jones@zulaufbraun.org",
           "delinquent": false,
           "metadata": {},
           "subscriptions": {
             "object": "list",
             "total_count": 1,
             "has_more": false,
-            "url": "/v1/customers/cus_6PWvMgmNAIRNms/subscriptions",
+            "url": "/v1/customers/cus_6QZyhIzfj615wW/subscriptions",
             "data": [
               {
-                "id": "sub_6PWvvpwli1TCKy",
+                "id": "sub_6QZyMUjHfjQGsm",
                 "plan": {
                   "interval": "month",
                   "name": "Basic Plan",
@@ -180,12 +180,12 @@ http_interactions:
                   "statement_descriptor": "MyFlix Subscription"
                 },
                 "object": "subscription",
-                "start": 1434075939,
+                "start": 1434317921,
                 "status": "active",
-                "customer": "cus_6PWvMgmNAIRNms",
+                "customer": "cus_6QZyhIzfj615wW",
                 "cancel_at_period_end": false,
-                "current_period_start": 1434075939,
-                "current_period_end": 1436667939,
+                "current_period_start": 1434317921,
+                "current_period_end": 1436909921,
                 "ended_at": null,
                 "trial_start": null,
                 "trial_end": null,
@@ -205,10 +205,10 @@ http_interactions:
             "object": "list",
             "total_count": 1,
             "has_more": false,
-            "url": "/v1/customers/cus_6PWvMgmNAIRNms/sources",
+            "url": "/v1/customers/cus_6QZyhIzfj615wW/sources",
             "data": [
               {
-                "id": "card_16ChrTJQmdZI8GFqQpKgN5JY",
+                "id": "card_16DioPJQmdZI8GFqVmdj6N0e",
                 "object": "card",
                 "last4": "4242",
                 "brand": "Visa",
@@ -229,12 +229,12 @@ http_interactions:
                 "address_zip_check": null,
                 "dynamic_last4": null,
                 "metadata": {},
-                "customer": "cus_6PWvMgmNAIRNms"
+                "customer": "cus_6QZyhIzfj615wW"
               }
             ]
           },
-          "default_source": "card_16ChrTJQmdZI8GFqQpKgN5JY"
+          "default_source": "card_16DioPJQmdZI8GFqVmdj6N0e"
         }
     http_version: 
-  recorded_at: Fri, 12 Jun 2015 02:25:39 GMT
+  recorded_at: Sun, 14 Jun 2015 21:38:42 GMT
 recorded_with: VCR 2.9.3

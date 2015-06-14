@@ -1,6 +1,5 @@
 class UserSignup
   attr_reader :error_message
-
   def initialize(user)
     @user = user
   end
@@ -14,6 +13,7 @@ class UserSignup
       })
 
       if customer.successful?
+        @user.customer_token = customer.customer_token
         @user.save
         process_invitation(invitation_token)
         AppMailer.send_welcome_email(@user).deliver

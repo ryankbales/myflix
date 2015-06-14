@@ -1,0 +1,131 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.stripe.com/v1/events/evt_16Dg1IJQmdZI8GFqLAuL5M8X
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Stripe/v1 RubyBindings/1.21.0
+      Authorization:
+      - Bearer sk_test_DoYIF2BQvoF4iSpx4XnyQDlK
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"1.21.0","lang":"ruby","lang_version":"2.1.6 p336 (2015-04-13)","platform":"x86_64-darwin14.0","engine":"ruby","publisher":"stripe","uname":"Darwin
+        BALES-MAC-DADDY.local 14.1.0 Darwin Kernel Version 14.1.0: Mon Dec 22 23:10:38
+        PST 2014; root:xnu-2782.10.72~2/RELEASE_X86_64 x86_64","hostname":"BALES-MAC-DADDY.local"}'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 14 Jun 2015 21:52:19 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '1958'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_GQCfawbUPFHgoXMY
+      Stripe-Version:
+      - '2015-04-07'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "evt_16Dg1IJQmdZI8GFqLAuL5M8X",
+          "created": 1434307188,
+          "livemode": false,
+          "type": "charge.succeeded",
+          "data": {
+            "object": {
+              "id": "ch_16Dg1IJQmdZI8GFq1X29sGcY",
+              "object": "charge",
+              "created": 1434307188,
+              "livemode": false,
+              "paid": true,
+              "status": "succeeded",
+              "amount": 999,
+              "currency": "usd",
+              "refunded": false,
+              "source": {
+                "id": "card_16Dg1HJQmdZI8GFq7YCoO78R",
+                "object": "card",
+                "last4": "4242",
+                "brand": "Visa",
+                "funding": "credit",
+                "exp_month": 6,
+                "exp_year": 2017,
+                "fingerprint": "fRzDtqzYyQefT50I",
+                "country": "US",
+                "name": null,
+                "address_line1": null,
+                "address_line2": null,
+                "address_city": null,
+                "address_state": null,
+                "address_zip": null,
+                "address_country": null,
+                "cvc_check": "pass",
+                "address_line1_check": null,
+                "address_zip_check": null,
+                "dynamic_last4": null,
+                "metadata": {},
+                "customer": "cus_6QX57Avkf4RPPB"
+              },
+              "captured": true,
+              "balance_transaction": "txn_16Dg1IJQmdZI8GFqUv0agn0T",
+              "failure_message": null,
+              "failure_code": null,
+              "amount_refunded": 0,
+              "customer": "cus_6QX57Avkf4RPPB",
+              "invoice": "in_16Dg1IJQmdZI8GFqD1aWyhpJ",
+              "description": null,
+              "dispute": null,
+              "metadata": {},
+              "statement_descriptor": "MyFlix Subscription",
+              "fraud_details": {},
+              "receipt_email": null,
+              "receipt_number": null,
+              "shipping": null,
+              "destination": null,
+              "application_fee": null,
+              "refunds": {
+                "object": "list",
+                "total_count": 0,
+                "has_more": false,
+                "url": "/v1/charges/ch_16Dg1IJQmdZI8GFq1X29sGcY/refunds",
+                "data": []
+              }
+            }
+          },
+          "object": "event",
+          "pending_webhooks": 0,
+          "request": "iar_6QX5WCLuD3XsSb",
+          "api_version": "2015-04-07"
+        }
+    http_version: 
+  recorded_at: Sun, 14 Jun 2015 21:52:19 GMT
+recorded_with: VCR 2.9.3
