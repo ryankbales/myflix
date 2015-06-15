@@ -31,7 +31,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 12 Jun 2015 01:05:21 GMT
+      - Sun, 14 Jun 2015 21:38:03 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -49,7 +49,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_MIRGxYoCnTL74nL4
+      - req_q1IlJdlMpRGgYlIJ
       Stripe-Version:
       - '2015-04-07'
       Strict-Transport-Security:
@@ -58,14 +58,14 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "tok_16CgblJQmdZI8GFqucE91jq0",
+          "id": "tok_16DinnJQmdZI8GFqTt4M7rPF",
           "livemode": false,
-          "created": 1434071121,
+          "created": 1434317883,
           "used": false,
           "object": "token",
           "type": "card",
           "card": {
-            "id": "card_16CgblJQmdZI8GFqnz61Q3AC",
+            "id": "card_16DinnJQmdZI8GFqsAJIY8DA",
             "object": "card",
             "last4": "4242",
             "brand": "Visa",
@@ -87,16 +87,16 @@ http_interactions:
             "dynamic_last4": null,
             "metadata": {}
           },
-          "client_ip": "204.80.187.225"
+          "client_ip": "204.80.187.239"
         }
     http_version: 
-  recorded_at: Fri, 12 Jun 2015 01:05:20 GMT
+  recorded_at: Sun, 14 Jun 2015 21:38:03 GMT
 - request:
     method: post
     uri: https://api.stripe.com/v1/charges
     body:
       encoding: US-ASCII
-      string: amount=999&currency=usd&source=tok_16CgblJQmdZI8GFqucE91jq0&description=valid%20charge
+      string: amount=999&currency=usd&source=tok_16DinnJQmdZI8GFqTt4M7rPF&description=valid%20charge
     headers:
       Accept:
       - "*/*; q=0.5, application/xml"
@@ -122,7 +122,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 12 Jun 2015 01:05:22 GMT
+      - Sun, 14 Jun 2015 21:38:03 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -140,7 +140,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_JnQ8vQXQjdeAOcLC
+      - req_gsgh8mFzYYwTjSR7
       Stripe-Version:
       - '2015-04-07'
       Strict-Transport-Security:
@@ -149,9 +149,9 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "ch_16CgblJQmdZI8GFqHwX7H8bD",
+          "id": "ch_16DinnJQmdZI8GFq3w3VYYvH",
           "object": "charge",
-          "created": 1434071121,
+          "created": 1434317883,
           "livemode": false,
           "paid": true,
           "status": "succeeded",
@@ -159,7 +159,7 @@ http_interactions:
           "currency": "usd",
           "refunded": false,
           "source": {
-            "id": "card_16CgblJQmdZI8GFqnz61Q3AC",
+            "id": "card_16DinnJQmdZI8GFqsAJIY8DA",
             "object": "card",
             "last4": "4242",
             "brand": "Visa",
@@ -183,7 +183,7 @@ http_interactions:
             "customer": null
           },
           "captured": true,
-          "balance_transaction": "txn_16CgblJQmdZI8GFq6nrkjtZx",
+          "balance_transaction": "txn_16DinnJQmdZI8GFqMStX55YI",
           "failure_message": null,
           "failure_code": null,
           "amount_refunded": 0,
@@ -203,10 +203,10 @@ http_interactions:
             "object": "list",
             "total_count": 0,
             "has_more": false,
-            "url": "/v1/charges/ch_16CgblJQmdZI8GFqHwX7H8bD/refunds",
+            "url": "/v1/charges/ch_16DinnJQmdZI8GFq3w3VYYvH/refunds",
             "data": []
           }
         }
     http_version: 
-  recorded_at: Fri, 12 Jun 2015 01:05:21 GMT
+  recorded_at: Sun, 14 Jun 2015 21:38:03 GMT
 recorded_with: VCR 2.9.3

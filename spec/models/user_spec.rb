@@ -74,5 +74,13 @@ describe User do
       follower.can_follow?(leader).should be_falsey
     end
   end
+
+  describe "#deactivate!" do
+    it "deactivates an active user" do
+      oscar = Fabricate(:user, active: true)
+      oscar.deactivate!
+      expect(oscar).not_to be_active
+    end
+  end
   
 end

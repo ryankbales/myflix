@@ -35,4 +35,8 @@ class User < ActiveRecord::Base
       true
     end
   end
+
+  def deactivate!
+    update_column(:active, false)
+  end
 end

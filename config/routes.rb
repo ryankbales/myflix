@@ -25,6 +25,7 @@ Myflix::Application.routes.draw do
 
   namespace :admin do
     resources :videos, only: [:new, :create]
+    resources :payments, only: [:index]
   end
 
   resources :categories
@@ -35,4 +36,6 @@ Myflix::Application.routes.draw do
 
   post 'update_queue', to: 'queue_items#update_queue' do
   end
+
+  mount StripeEvent::Engine, at: '/stripe_events'
 end

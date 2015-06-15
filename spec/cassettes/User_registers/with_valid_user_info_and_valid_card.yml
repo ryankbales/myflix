@@ -2,10 +2,10 @@
 http_interactions:
 - request:
     method: post
-    uri: https://api.stripe.com/v1/charges
+    uri: https://api.stripe.com/v1/customers
     body:
       encoding: US-ASCII
-      string: amount=999&currency=usd&source=tok_16Cgc6JQmdZI8GFq1xFagP6S&description=Sign%20up%20charge%20for%20dax%40email.com
+      string: source=tok_16Do8MJQmdZI8GFqfGEa7gVQ&plan=basic&email=dax%40email.com
     headers:
       Accept:
       - "*/*; q=0.5, application/xml"
@@ -22,7 +22,7 @@ http_interactions:
         BALES-MAC-DADDY.local 14.1.0 Darwin Kernel Version 14.1.0: Mon Dec 22 23:10:38
         PST 2014; root:xnu-2782.10.72~2/RELEASE_X86_64 x86_64","hostname":"BALES-MAC-DADDY.local"}'
       Content-Length:
-      - '114'
+      - '68'
   response:
     status:
       code: 200
@@ -31,11 +31,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 12 Jun 2015 01:05:43 GMT
+      - Mon, 15 Jun 2015 03:19:39 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '1420'
+      - '2313'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -49,7 +49,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_tGV2Ne2DVkSpUlHN
+      - req_z8TFLwow3YNH5Uf2
       Stripe-Version:
       - '2015-04-07'
       Strict-Transport-Security:
@@ -58,64 +58,92 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "ch_16Cgc7JQmdZI8GFq2W5LKK8M",
-          "object": "charge",
-          "created": 1434071143,
+          "object": "customer",
+          "created": 1434338379,
+          "id": "cus_6QfTA3yd0xbJex",
           "livemode": false,
-          "paid": true,
-          "status": "succeeded",
-          "amount": 999,
-          "currency": "usd",
-          "refunded": false,
-          "source": {
-            "id": "card_16Cgc6JQmdZI8GFqygnJBVFg",
-            "object": "card",
-            "last4": "4242",
-            "brand": "Visa",
-            "funding": "credit",
-            "exp_month": 6,
-            "exp_year": 2018,
-            "fingerprint": "fRzDtqzYyQefT50I",
-            "country": "US",
-            "name": null,
-            "address_line1": null,
-            "address_line2": null,
-            "address_city": null,
-            "address_state": null,
-            "address_zip": null,
-            "address_country": null,
-            "cvc_check": "pass",
-            "address_line1_check": null,
-            "address_zip_check": null,
-            "dynamic_last4": null,
-            "metadata": {},
-            "customer": null
-          },
-          "captured": true,
-          "balance_transaction": "txn_16Cgc7JQmdZI8GFqzMuca4nT",
-          "failure_message": null,
-          "failure_code": null,
-          "amount_refunded": 0,
-          "customer": null,
-          "invoice": null,
-          "description": "Sign up charge for dax@email.com",
-          "dispute": null,
+          "description": null,
+          "email": "dax@email.com",
+          "delinquent": false,
           "metadata": {},
-          "statement_descriptor": null,
-          "fraud_details": {},
-          "receipt_email": null,
-          "receipt_number": null,
-          "shipping": null,
-          "destination": null,
-          "application_fee": null,
-          "refunds": {
+          "subscriptions": {
             "object": "list",
-            "total_count": 0,
+            "total_count": 1,
             "has_more": false,
-            "url": "/v1/charges/ch_16Cgc7JQmdZI8GFq2W5LKK8M/refunds",
-            "data": []
-          }
+            "url": "/v1/customers/cus_6QfTA3yd0xbJex/subscriptions",
+            "data": [
+              {
+                "id": "sub_6QfTqKzAPk7qYj",
+                "plan": {
+                  "interval": "month",
+                  "name": "Basic Plan",
+                  "created": 1434072668,
+                  "amount": 999,
+                  "currency": "usd",
+                  "id": "basic",
+                  "object": "plan",
+                  "livemode": false,
+                  "interval_count": 1,
+                  "trial_period_days": null,
+                  "metadata": {},
+                  "statement_descriptor": "MyFlix Subscription"
+                },
+                "object": "subscription",
+                "start": 1434338379,
+                "status": "active",
+                "customer": "cus_6QfTA3yd0xbJex",
+                "cancel_at_period_end": false,
+                "current_period_start": 1434338379,
+                "current_period_end": 1436930379,
+                "ended_at": null,
+                "trial_start": null,
+                "trial_end": null,
+                "canceled_at": null,
+                "quantity": 1,
+                "application_fee_percent": null,
+                "discount": null,
+                "tax_percent": null,
+                "metadata": {}
+              }
+            ]
+          },
+          "discount": null,
+          "account_balance": 0,
+          "currency": "usd",
+          "sources": {
+            "object": "list",
+            "total_count": 1,
+            "has_more": false,
+            "url": "/v1/customers/cus_6QfTA3yd0xbJex/sources",
+            "data": [
+              {
+                "id": "card_16Do8MJQmdZI8GFqFL7Qpvtr",
+                "object": "card",
+                "last4": "4242",
+                "brand": "Visa",
+                "funding": "credit",
+                "exp_month": 6,
+                "exp_year": 2018,
+                "fingerprint": "fRzDtqzYyQefT50I",
+                "country": "US",
+                "name": null,
+                "address_line1": null,
+                "address_line2": null,
+                "address_city": null,
+                "address_state": null,
+                "address_zip": null,
+                "address_country": null,
+                "cvc_check": "pass",
+                "address_line1_check": null,
+                "address_zip_check": null,
+                "dynamic_last4": null,
+                "metadata": {},
+                "customer": "cus_6QfTA3yd0xbJex"
+              }
+            ]
+          },
+          "default_source": "card_16Do8MJQmdZI8GFqFL7Qpvtr"
         }
     http_version: 
-  recorded_at: Fri, 12 Jun 2015 01:05:43 GMT
+  recorded_at: Mon, 15 Jun 2015 03:19:39 GMT
 recorded_with: VCR 2.9.3

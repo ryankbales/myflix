@@ -18,6 +18,7 @@ gem 'newrelic_rpm'
 gem 'carrierwave-aws'
 gem "mini_magick"
 gem 'stripe', '~> 1.21.0'
+gem 'stripe_event'
 
 group :development do
   gem 'thin'
