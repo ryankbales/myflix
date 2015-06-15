@@ -75,7 +75,7 @@ describe User do
     end
   end
 
-  describe "deactivate!" do
+  describe "#deactivate!" do
     it "deactivates an active user" do
       oscar = Fabricate(:user, active: true)
       oscar.deactivate!
