@@ -17,8 +17,9 @@
                 %th Reference ID
             %tbody
               - @payments.each do |payment| 
-                %tr
-                  %td= payment.user.full_name
-                  %td= payment.user.email
-                  %td= number_to_currency(payment.amount * 0.01)
-                  %td csdgw321s-ad3
+                - if payment.user
+                  %tr
+                    %td= payment.user.full_name
+                    %td= payment.user.email
+                    %td= number_to_currency(payment.amount * 0.01)
+                    %td= payment.reference_id
